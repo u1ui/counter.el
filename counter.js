@@ -6,10 +6,6 @@ class counter extends HTMLElement {
 
         this.value = Number(this.innerHTML.replace("'",''));
 
-        this._digits = 0;
-        if (this.value<=10) this._digits = 1;
-
-
         this._observer = new IntersectionObserver((entries)=>{
             entries[0].isIntersecting ? this.play() : this.reset();
         });
@@ -64,8 +60,8 @@ class counter extends HTMLElement {
 function format(el, val){
     return new Intl.NumberFormat(undefined, {
         style: 'decimal',
-        minimumFractionDigits: el._digits,
-        maximumFractionDigits: el._digits,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
     }).format(val);
 }
 
