@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+<head lang=en>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width">
+
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/base.css/full.css">
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/classless.css/variables.min.css">
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/classless.css/classless.min.css">
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/classless.css/more.min.css">
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/classless.css/aria.min.css">
+    <link rel=stylesheet href="https://cdn.jsdelivr.net/gh/u1ui/classless.css/simple.min.css">
+
+
+    <script src="https://cdn.jsdelivr.net/gh/nuxodin/cleanup.js@1.1.0/mod.min.js"></script>
+
+    <link rel=stylesheet href="../counter.css">
+    <script src="../counter.js" type=module></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>u1-counter</h1>
+    </header>
+
+    <section>
+        <h2>API tests</h2>
+        <u1-counter id=counter1>100000</u1-counter>
+        <button onclick="counter1.play()">play</button>
+        <button onclick="counter1.stop()">stop</button>
+        <button onclick="console.log(counter1); counter1.reset()">reset</button>
+    </section>
+
+
+    <section>
+        <h2>Scroll test</h2>
+        <div style="overflow:auto; height:200px">
+            Scroll down to start the counter
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">1386</u1-counter>
+            <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">10</u1-counter>
+        </div>
+    </section>
+
+
+
+    <section>
+        <h2>remove from dom and reattache</h2>
+
+        <div id=container3>
+            <u1-counter id=counter3 style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">345</u1-counter>
+            <button id=button3>remove / attache</button>
+        </div>
+        <script>
+        let counter3 = window.counter3;
+        let to = null;
+        button3.onclick = ()=>{
+            counter3.remove();
+            clearTimeout(to);
+            to = setTimeout(()=>container3.append(counter3), 2000);
+        }
+        </script>
+
+    </section>

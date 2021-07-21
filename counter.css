@@ -1,0 +1,6 @@
+u1-counter {
+    text-align:center;
+    display:inline-block;
+    min-width:var(--finalWidth);
+    /* width:fit-content; todo? */
+}
