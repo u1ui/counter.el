@@ -1,59 +1,69 @@
-// todo add privet fields
-/* element */
 class counter extends HTMLElement {
     constructor() {
         super();
 
-        this.value = Number(this.innerHTML.replace("'",''));
+        this._start = 0;
+        this._end = Number(this.innerHTML.replace("'",''));
+
+        this.animatedValue = 0;
 
         this._observer = new IntersectionObserver((entries)=>{
-            entries[0].isIntersecting ? this.play() : this.reset();
+            entries[0].isIntersecting ? this._animate(this._start, this._end) : this._reset();
         });
     }
-    //static get observedAttributes() {}
-    //attributeChangedCallback(name, oldValue, newValue) {}
-    customProperty(property) {
-        return getComputedStyle(this).getPropertyValue('--u1-carousel-' + property);
+    // set value
+    static get observedAttributes() { return ['value'] }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'value') this.value = newValue
     }
+    set value(value){
+        this._end = Number(value);
+        // todo: recalculate finalWidth
+        this._animate(this.animatedValue, this._end);
+    }
+
     connectedCallback() {
         // measure final-width
-        this.innerHTML = format(this, this.value);
+        this.innerHTML = format(this, this._end);
         let widthPx = this.offsetWidth;
         const fontSizePx = Number(getComputedStyle(this).getPropertyValue('font-size').slice(0,-2));
         const em = widthPx / fontSizePx;
         this.style.setProperty('--finalWidth', em+'em');
 
-        this.reset();
+        this._reset();
 
-        this._observer.observe(this)
+        this._observer.observe(this);
     }
     disconnectedCallback() {
         this._observer.disconnect(this)
     }
-    play() {
+    _animate(from, to) {
         const duration = 1000;
         const frames = Math.ceil(duration / 16);
-        const step = this.value / frames;
-
-        this.stop();
-        let val = 0;
+        let step = (to - from) / frames;
+        this._stop();
+        this.animatedValue = from;
         this._interval = setInterval(()=>{
-            val+=step;
-            //val = Math.round(val);
-            if (val>=this.value) {
-                val = this.value;
-                this.stop();
+            this.animatedValue += step;
+            if (step>0 ? this.animatedValue>=to : this.animatedValue<=to) {
+                this.animatedValue = to;
+                this._stop();
             }
-            requestAnimationFrame(()=> this.innerHTML = format(this, val) );
+            this._draw()
         },15)
     }
-    stop() {
+    _stop() {
         clearInterval(this._interval);
     }
-    reset() {
-        this.stop();
-        this.innerHTML = '0';
+    _reset() {
+        this._stop();
+        this.animatedValue = this._end;
+        this._draw();
     }
+    _draw(){
+        requestAnimationFrame(()=> this.innerHTML = format(this, this.animatedValue) );
+    }
+    //customProperty(property) { return getComputedStyle(this).getPropertyValue('--u1-carousel-' + property); }
 }
 
 
