@@ -29,9 +29,7 @@
     <section>
         <h2>API tests</h2>
         <u1-counter id=counter1>100000</u1-counter>
-        <button onclick="counter1.play()">play</button>
-        <button onclick="counter1.stop()">stop</button>
-        <button onclick="console.log(counter1); counter1.reset()">reset</button>
+        Set value: <input placeholder onchange="counter1.setAttribute('value', this.value)" style="width:5em">
     </section>
 
 
@@ -64,7 +62,7 @@
             <br>
             <br>
             <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">1386</u1-counter>
-            <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">10</u1-counter>
+            <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">-10</u1-counter>
         </div>
     </section>
 
