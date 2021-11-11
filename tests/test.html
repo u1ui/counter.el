@@ -27,6 +27,24 @@
     </header>
 
     <section>
+        <h2>Test</h2>
+        <table>
+            <tr>
+                <td> Use "value"-Attribute:
+                <td align=right> <u1-counter value="5000"></u1-counter>
+            <tr>
+                <td> Use "value"-Attribute with digits "1.00" (not working when using innerHTML)
+                <td align=right> <u1-counter value="1.00"></u1-counter>
+            <tr>
+                <td> Attribute "no-grouping"
+                <td align=right> <u1-counter no-grouping>5000</u1-counter>
+            <tr>
+                <td> Use innerHTML:
+                <td align=right> <u1-counter>5000</u1-counter>
+        </table>
+    </section>
+
+    <section>
         <h2>API tests</h2>
         <u1-counter id=counter1>100000</u1-counter>
         Set value: <input placeholder onchange="counter1.setAttribute('value', this.value)" style="width:5em">
@@ -63,6 +81,7 @@
             <br>
             <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">1386</u1-counter>
             <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem">-10</u1-counter>
+            <u1-counter style="font-size:2em; margin:auto; padding:1rem; background:#999; border-radius:2rem" value=876.0></u1-counter>
         </div>
     </section>
 

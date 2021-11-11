@@ -12,11 +12,15 @@ class counter extends HTMLElement {
         });
     }
     // set value
-    static get observedAttributes() { return ['value'] }
+    static get observedAttributes() { return ['value', 'no-grouping'] }
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'value') this.value = newValue
+        if (name === 'no-grouping') this.noGrouping = newValue!==null;
     }
     set value(value){
+        let [ integer, digits='' ] = value.trim().split('.');
+        this._minDigits = digits.length;
+
         this._end = Number(value);
         // todo: recalculate finalWidth
         this._animate(this.animatedValue, this._end);
@@ -37,7 +41,7 @@ class counter extends HTMLElement {
     disconnectedCallback() {
         this._observer.disconnect(this)
     }
-    _animate(from, to) {
+    _animate(from, to) { // todo easing
         const duration = 1000;
         const frames = Math.ceil(duration / 16);
         let step = (to - from) / frames;
@@ -70,8 +74,9 @@ class counter extends HTMLElement {
 function format(el, val){
     return new Intl.NumberFormat(undefined, {
         style: 'decimal',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
+        minimumFractionDigits: el._minDigits || 0,
+        maximumFractionDigits: el._minDigits || 0,
+        useGrouping: !el.noGrouping
     }).format(val);
 }
 
