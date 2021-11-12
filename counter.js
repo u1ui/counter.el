@@ -12,9 +12,11 @@ class counter extends HTMLElement {
         });
     }
     // set value
-    static get observedAttributes() { return ['value', 'no-grouping'] }
+    static get observedAttributes() { return ['value', 'from', 'no-grouping'] }
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'value') this.value = newValue
+        if (name === 'value') this.value = newValue;
+        if (name === 'from') this._start = parseFloat(newValue);
+        console.log(this._start)
         if (name === 'no-grouping') this.noGrouping = newValue!==null;
     }
     set value(value){
