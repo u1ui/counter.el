@@ -16,7 +16,6 @@ class counter extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'value') this.value = newValue;
         if (name === 'from') this._start = parseFloat(newValue);
-        console.log(this._start)
         if (name === 'no-grouping') this.noGrouping = newValue!==null;
     }
     set value(value){
@@ -45,6 +44,7 @@ class counter extends HTMLElement {
     }
     _animate(from, to) { // todo easing
         const duration = 1000;
+        //const duration = Number(getComputedStyle(this).getPropertyValue('--u1-counter-duration'));
         const frames = Math.ceil(duration / 16);
         let step = (to - from) / frames;
         this._stop();

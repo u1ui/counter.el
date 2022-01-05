@@ -2,6 +2,7 @@ u1-counter {
     text-align:center;
     display:inline-block;
     min-width:var(--finalWidth);
-    xfont-variant: tabular-nums;
+    font-variant: tabular-nums;
+    font-feature-settings: "tnum";
     /* width:fit-content; todo? */
 }
