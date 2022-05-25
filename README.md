@@ -9,6 +9,7 @@ Animated Number Counter
 - Optional attribute `from="-10"` defines start value. Without it, it will start at 0
 - You can set the property `element.value` to start counting.
 - Counter elements get a css variable `--finalWidth` which is set to their `min-width` by default.
+- Use the inner HTML as fallback.
 
 # Ussage
 ```html
