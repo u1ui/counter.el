@@ -13,8 +13,8 @@ Animated Number Counter
 
 # Ussage
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x/counter.css">
-<scrip src="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x/counter.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x/counter.min.css">
+<scrip src="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x/counter.min.js"></script>
 
 
 <u1-counter from=-11.0 value=200.0 once>200.0</u1-counter>
