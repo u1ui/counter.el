@@ -1,5 +1,5 @@
 # Counter-element
-Counting numbers
+Animated Number Counter
 
 # Features
 - The counter starts when the element comes into the viewport
