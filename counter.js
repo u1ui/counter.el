@@ -8,11 +8,16 @@ class counter extends HTMLElement {
         this.animatedValue = 0;
 
         this._observer = new IntersectionObserver((entries)=>{
-            entries[0].isIntersecting ? this._animate(this._start, this._end) : this._reset();
+            if (entries[0].isIntersecting) {
+                this._animate(this._start, this._end)
+                if (this.hasAttribute('once')) this._observer.disconnect(this);
+            } else {
+                this._reset();
+            }
         });
     }
     // set value
-    static get observedAttributes() { return ['value', 'from', 'no-grouping'] }
+    static get observedAttributes() { return ['value', 'from', 'no-grouping', 'once'] }
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'value') this.value = newValue;
         if (name === 'from') this._start = parseFloat(newValue);
@@ -36,7 +41,6 @@ class counter extends HTMLElement {
         this.style.setProperty('--finalWidth', em+'em');
 
         this._reset();
-
         this._observer.observe(this);
     }
     disconnectedCallback() {
@@ -44,7 +48,6 @@ class counter extends HTMLElement {
     }
     _animate(from, to) { // todo easing
         const duration = 1000;
-        //const duration = Number(getComputedStyle(this).getPropertyValue('--u1-counter-duration'));
         const frames = Math.ceil(duration / 16);
         let step = (to - from) / frames;
         this._stop();
@@ -52,6 +55,24 @@ class counter extends HTMLElement {
         this._interval = setInterval(()=>{
             this.animatedValue += step;
             if (step>0 ? this.animatedValue>=to : this.animatedValue<=to) {
+                this.animatedValue = to;
+                this._stop();
+            }
+            this._draw()
+        },15)
+    }
+    _animate(from, to) { // todo easing
+        const duration = 2000;
+        let diff = to - from;
+        this._stop();
+        this.animatedValue = from;
+        let start = performance.now();
+        this._interval = setInterval(()=>{
+            let now = performance.now();
+            let progress = (now - start) / duration;
+            if (progress>1) progress = 1;
+            this.animatedValue = from + diff * easeOutCubic(progress);
+            if (progress >= 1) {
                 this.animatedValue = to;
                 this._stop();
             }
@@ -69,9 +90,12 @@ class counter extends HTMLElement {
     _draw(){
         requestAnimationFrame(()=> this.innerHTML = format(this, this.animatedValue) );
     }
-    //customProperty(property) { return getComputedStyle(this).getPropertyValue('--u1-carousel-' + property); }
 }
 
+// https://easings.net/de
+function easeOutCubic(x) {
+    return 1 - Math.pow(1 - x, 3);
+}
 
 function format(el, val){
     return new Intl.NumberFormat(undefined, {
