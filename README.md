@@ -18,11 +18,6 @@ Animated Number Counter
 <u1-counter from=-11.0 value=200.0 once>200.0</u1-counter>
 ```
 
-## Demos
-
-https://raw.githack.com/u1ui/counter.el/main/tests/minimal.html  
-https://raw.githack.com/u1ui/counter.el/main/tests/test.html
-
 ## Install
 
 ```html
@@ -30,10 +25,10 @@ https://raw.githack.com/u1ui/counter.el/main/tests/test.html
 <script src="https://cdn.jsdelivr.net/gh/u1ui/counter.el@3.0.0/counter.min.js" type=module>
 ```
 
-## Demo
+## Demos
 
-https://raw.githack.com/u1ui/counter.el/main/tests/minimal.html  
-https://raw.githack.com/u1ui/counter.el/main/tests/test.html  
+[minimal.html](https://raw.githack.com/u1ui/counter.el/main/tests/minimal.html)  
+[test.html](https://raw.githack.com/u1ui/counter.el/main/tests/test.html)  
 
 ## About
 
