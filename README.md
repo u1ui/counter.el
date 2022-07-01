@@ -18,6 +18,14 @@ Animated Number Counter
 <u1-counter from=-11.0 value=200.0 once>200.0</u1-counter>
 ```
 
+```css
+u1-counter {
+    font-size:3rem;
+    min-width:var(--finalWidth);
+    background:yellow;
+}
+```
+
 ## Install
 
 ```html
@@ -27,8 +35,8 @@ Animated Number Counter
 
 ## Demos
 
-[minimal.html](https://raw.githack.com/u1ui/counter.el/main/tests/minimal.html)  
-[test.html](https://raw.githack.com/u1ui/counter.el/main/tests/test.html)  
+[minimal.html](http://gcdn.li/u1ui/counter.el@main/tests/minimal.html)  
+[test.html](http://gcdn.li/u1ui/counter.el@main/tests/test.html)  
 
 ## About
 
