@@ -29,8 +29,8 @@ u1-counter {
 ## Install
 
 ```html
-<link href="https://cdn.jsdelivr.net/gh/u1ui/counter.el@3.0.0/counter.min.css" rel=stylesheet>
-<script src="https://cdn.jsdelivr.net/gh/u1ui/counter.el@3.0.0/counter.min.js" type=module>
+<link href="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x.x.x/counter.min.css" rel=stylesheet>
+<script src="https://cdn.jsdelivr.net/gh/u1ui/counter.el@x.x.x/counter.min.js" type=module>
 ```
 
 ## Demos
