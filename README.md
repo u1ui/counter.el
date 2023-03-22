@@ -4,6 +4,7 @@ Animated Number Counter
 ## Features
 
 - The counter starts when the element comes into the viewport
+- Attribute `once` to count only once
 - It counts using a easeOutCubic timing function
 - Attribute `value="12.30"` defines target value 
 - ...and decimal places to be displayed!
