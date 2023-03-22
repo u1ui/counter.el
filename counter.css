@@ -4,5 +4,5 @@ u1-counter {
     min-width:var(--finalWidth);
     font-variant: tabular-nums;
     font-feature-settings: "tnum";
-    /* width:fit-content; todo? */
+    box-sizing:content-box;
 }
