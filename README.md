@@ -16,14 +16,15 @@ Animated Number Counter
 ## Ussage
 
 ```html
-<u1-counter from=-11.0 value=200.0 once>200.0</u1-counter>
+<u1-counter from=-11.0 value=200.0>200.0</u1-counter>
 ```
 
 ```css
 u1-counter {
     font-size:3rem;
-    min-width:var(--finalWidth);
-    background:yellow;
+    text-align:right;
+    padding:.3em;
+    background:var(--color-area);
 }
 ```
 
